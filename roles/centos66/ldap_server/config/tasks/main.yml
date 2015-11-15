@@ -1,0 +1,46 @@
+- name: set password
+  command: slappasswd -h {SSHA} -s ldapadmin
+  tags: config
+
+- name: remove default files
+  file: path=/etc/openldap/slapd.d/{{ item }} state=absent 
+  tags: config
+  with_items:
+    - cn=config
+    - cn=config.ldif
+
+- name: place db_config
+  shell: creates=/var/lib/ldap/DB_CONFIG cp /usr/share/openldap-servers/DB_CONFIG.example /var/lib/ldap/DB_CONFIG
+  tags: config
+
+- name: place slapd.conf
+  copy: src=/etc/ansible/template/ldap-server/slapd.conf
+        dest=/etc/openldap/slapd.conf
+  tags: config
+
+- name: mod slapd.conf
+  file: path=/etc/openldap/slapd.conf
+        owner=ldap group=ldap
+  tags: config
+
+- name: run slapadd
+  shell: slapadd -l /etc/openldap/schema/core.ldif || /bin/true
+  tags: config
+
+- name: make config file
+  shell: slaptest -f /etc/openldap/slapd.conf -F /etc/openldap/slapd.d/
+  tags: config
+
+- name: chown 1
+  file: path=/etc/openldap/slapd.d/ 
+        owner=ldap group=ldap state=directory recurse=yes
+  tags: config
+
+- name: chown 2
+  file: path=/var/lib/ldap/
+        owner=ldap group=ldap recurse=yes
+  tags: config
+
+- name: serivce on
+  service: name=slapd state=started enabled=yes
+  tags: config
