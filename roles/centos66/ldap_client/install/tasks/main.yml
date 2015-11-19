@@ -1,0 +1,9 @@
+- name: install openldap
+  yum: name={{ item }} state=present
+  with_items:
+    - compat-openldap
+    - openldap-clients
+    - pam_ldap
+    - nss-pam-ldapd
+    - authconfig
+  tags: install

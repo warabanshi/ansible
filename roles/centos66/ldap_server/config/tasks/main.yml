@@ -44,3 +44,19 @@
 - name: serivce on
   service: name=slapd state=started enabled=yes
   tags: config
+
+- name: check syslog config
+  shell: grep local4 /etc/rsyslog.conf
+  register: syslog_result
+  ignore_errors: true
+  tags: config
+
+- name: set syslog
+  shell: echo "local4.*                /var/log/slapd" >> /etc/rsyslog.conf
+  when: syslog_result.rc != 0
+  tags: config
+
+- name: restart syslog
+  shell: service rsyslog restart
+  when: syslog_result.rc != 0
+  tags: config

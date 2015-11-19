@@ -1,4 +1,4 @@
-- hosts: ldap
+- hosts: ldap-server
   remote_user: root
 
   roles:

@@ -1,2 +1,5 @@
-[ldap]
+[ldap-server]
 172.0.0.20
+
+[ldap-client]
+172.0.0.30

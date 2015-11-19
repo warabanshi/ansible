@@ -1,0 +1,6 @@
+- hosts: ldap-client
+  remote_user: root
+
+  roles:
+    - /etc/ansible/roles/centos66/ldap_client/install
+    - /etc/ansible/roles/centos66/ldap_client/config

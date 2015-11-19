@@ -1,0 +1,9 @@
+- name: save original configuration files
+  copy: src=/etc/ansible/template/ldap-client/{{ item }}
+        dest=/etc/{{ item }}
+  with_items:
+    - openldap/ldap.conf
+    - pam.d/system-auth
+    - nsswitch.conf
+    - pam_ldap.conf
+  tags: config
