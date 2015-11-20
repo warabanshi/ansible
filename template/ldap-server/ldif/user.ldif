@@ -1,0 +1,21 @@
+dn: uid=kohara-shinji,ou=Active,ou=Users,dc=wara,dc=local
+objectClass: top
+objectClass: posixAccount
+objectClass: inetOrgPerson
+objectClass: extensibleObject
+uid: kohara-shinji
+cn: wara
+userPassword: {SSHA}gmuiQYfcgOjWSh/PFzG/i1XMEfbEGUJl
+mail: kohara-shinji@dmm.com
+mail: shinji.kohara@bibo.com
+uidNumber: 20101
+gidNumber: 20000
+homeDirectory:/home/kohara-shinji
+loginShell: /bin/bash
+description: none
+c: JP
+dc: wara.local
+o: wara.local labo
+st: cebu
+sn: Kohara
+gn: Shinji

@@ -4,3 +4,4 @@
   roles:
     - /etc/ansible/roles/centos66/ldap_server/install
     - /etc/ansible/roles/centos66/ldap_server/config
+    - /etc/ansible/roles/centos66/ldap_server/making

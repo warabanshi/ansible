@@ -1,0 +1,7 @@
+dn: ou=People,dc=wara,dc=local
+objectClass: organizationalUnit
+ou: People
+
+dn: ou=Services,dc=wara,dc=local
+objectClass: organizationalUnit
+ou: Services

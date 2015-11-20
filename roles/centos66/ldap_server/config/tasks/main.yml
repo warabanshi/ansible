@@ -45,6 +45,11 @@
   service: name=slapd state=started enabled=yes
   tags: config
 
+- name: make log dir
+  file: path=/var/log/ldap
+        state=directory
+  tags: config
+
 - name: check syslog config
   shell: grep local4 /etc/rsyslog.conf
   register: syslog_result
@@ -52,7 +57,7 @@
   tags: config
 
 - name: set syslog
-  shell: echo "local4.*                /var/log/slapd" >> /etc/rsyslog.conf
+  shell: echo "local4.*                /var/log/ldap/ldap.log" >> /etc/rsyslog.conf
   when: syslog_result.rc != 0
   tags: config
 

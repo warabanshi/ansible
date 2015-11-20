@@ -1,0 +1,21 @@
+dn: ou=Groups,dc=wara,dc=local
+objectClass: organizationalUnit
+ou: Group
+
+dn: ou=Users,dc=wara,dc=local
+objectClass: organizationalUnit
+ou: Users
+
+dn: ou=Active,ou=Users,dc=wara,dc=local
+objectClass: organizationalUnit
+ou: Active
+
+dn: cn=Admin,ou=Groups,dc=wara,dc=local
+objectClass: posixGroup
+cn: Admin
+gidNumber: 10000
+
+dn: cn=Operator,ou=Groups,dc=wara,dc=local
+objectClass: posixGroup
+cn: Operator
+gidNumber: 20000

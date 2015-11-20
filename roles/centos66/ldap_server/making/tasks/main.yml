@@ -1,0 +1,25 @@
+- name: make ldif dir
+  file: path=/etc/openldap/ldif
+        state=directory
+  tags: making
+
+- name: put ldif
+  copy: src=/etc/ansible/template/ldap-server/ldif/{{ item }}
+        dest=/etc/openldap/ldif/{{ item }}
+  with_items:
+    - base.ldif
+    - people-personal.ldif
+    - group.ldif
+    - user.ldif
+  tags: making
+
+- name: make roles
+  shell: ldapadd -x -D 'cn=Manager,dc=wara,dc=local' -f /etc/openldap/ldif/{{ item }} -w 'ldapadmin'
+  register: result
+  failed_when: result.rc not in [0, 68]
+  with_items:
+    - base.ldif
+    - people-personal.ldif
+    - group.ldif
+    - user.ldif
+  tags: making

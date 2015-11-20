@@ -1,0 +1,9 @@
+dn: dc=wara,dc=local
+objectClass: organization
+objectClass: dcObject
+dc: wara
+o: wara
+
+dn: cn=Manager,dc=wara,dc=local
+objectClass: organizationalRole
+cn: Manager
