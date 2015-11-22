@@ -5,7 +5,7 @@ objectClass: inetOrgPerson
 objectClass: extensibleObject
 uid: kohara-shinji
 cn: wara
-userPassword: {SSHA}gmuiQYfcgOjWSh/PFzG/i1XMEfbEGUJl
+userPassword: {SSHA}nIuPw9MghrIFyzjhYYg0tYEX2TbYSB4n
 mail: kohara-shinji@dmm.com
 mail: shinji.kohara@bibo.com
 uidNumber: 20101

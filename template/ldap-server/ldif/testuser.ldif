@@ -1,0 +1,20 @@
+dn: uid=testuser,ou=Active,ou=Users,dc=wara,dc=local
+objectClass: top
+objectClass: posixAccount
+objectClass: inetOrgPerson
+objectClass: extensibleObject
+uid: testuser
+cn: wara
+userPassword: {SSHA}GJkNiRj0mTmXEnNf2P1G7qG3KOddMv5B
+mail: testuser@example.com
+uidNumber: 20102
+gidNumber: 20000
+homeDirectory:/home/testuser
+loginShell: /bin/bash
+description: none
+c: JP
+dc: wara.local
+o: wara.local labo
+st: cebu
+sn: test
+gn: user

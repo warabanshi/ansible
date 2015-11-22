@@ -10,7 +10,8 @@
     - base.ldif
     - people-personal.ldif
     - group.ldif
-    - user.ldif
+    - kohara-shinji.ldif
+    - testuser.ldif
   tags: making
 
 - name: make roles
@@ -21,5 +22,6 @@
     - base.ldif
     - people-personal.ldif
     - group.ldif
-    - user.ldif
+    - kohara-shinji.ldif
+    - testuser.ldif
   tags: making
