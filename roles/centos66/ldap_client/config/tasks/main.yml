@@ -7,3 +7,6 @@
     - nsswitch.conf
     - pam_ldap.conf
   tags: config
+
+- name: do authconfig
+  shell: authconfig --enableldap --enableldapauth --ldapserver="ldap://172.0.0.20/" --ldapbasedn="dc=wara,dc=local" --enablemkhomedir --update

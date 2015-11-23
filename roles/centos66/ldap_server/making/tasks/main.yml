@@ -10,7 +10,7 @@
     - base.ldif
     - people-personal.ldif
     - group.ldif
-    - kohara-shinji.ldif
+    - warabanshi.ldif
     - testuser.ldif
   tags: making
 
@@ -22,6 +22,6 @@
     - base.ldif
     - people-personal.ldif
     - group.ldif
-    - kohara-shinji.ldif
+    - warabanshi.ldif
     - testuser.ldif
   tags: making

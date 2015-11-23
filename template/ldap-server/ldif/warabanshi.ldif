@@ -1,0 +1,20 @@
+dn: uid=warabanshi,ou=Active,ou=Users,dc=wara,dc=local
+objectClass: top
+objectClass: posixAccount
+objectClass: inetOrgPerson
+objectClass: extensibleObject
+uid: warabanshi
+cn: wara
+userPassword: {SSHA}huu74FdlLdgVj86c286bAhsKbvC9DQfO
+mail: warabanshi@gmail.com
+uidNumber: 20101
+gidNumber: 20000
+homeDirectory:/home/warabanshi
+loginShell: /bin/bash
+description: none
+c: JP
+dc: wara.local
+o: wara.local labo
+st: cebu
+sn: wara
+gn: banshi
