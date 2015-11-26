@@ -1,0 +1,12 @@
+- name: install remi
+  yum: name=epel-release state=present
+  tags: yum
+
+- name: get remi rpm
+  get_url: url=http://rpms.famillecollet.com/enterprise/remi-release-6.rpm
+           dest={{ src_dir }}
+  tags: yum
+
+- name: install remi rpm
+  shell: rpm -Uvh {{ src_dir }}/remi-release-6.rpm
+  tags: yum
