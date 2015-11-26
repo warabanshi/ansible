@@ -1,0 +1,29 @@
+- name: check filter exists
+  shell: grep posixaccount /etc/pam_ldap.conf
+  register: filter_result
+  failed_when: filter_result.rc not in [0,1]
+  tags: filter
+
+- name: (stg)add filter if not exists
+  shell: echo "pam_filter &(objectclass=posixaccount)(|(cn=wara)(cn=local))" >> /etc/pam_ldap.conf
+  when: filter_result.rc == 1 and env == "stg"
+  tags: filter
+
+- name: (stg)modify filter if exists
+  replace: dest=/etc/pam_ldap.conf
+           regexp='pam_filter &\(objectclass=posixaccount\)\(\|\(cn=wara\)\(cn=local\)\)'
+           replace='pam_filter &(objectclass=posixaccount)(|(cn=wara)(cn=local)(cn=test))'
+  when: filter_result.rc == 0 and env == "stg"
+  tags: filter
+
+- name: (prd)add filter if not exists
+  shell: echo "pam_filter &(objectclass=posixaccount)(|(cn=wara)(cn=local))" >> /etc/pam_ldap.conf
+  when: filter_result.rc == 1 and env == "prd"
+  tags: filter
+
+- name: (prd)modify filter if exists
+  replace: dest=/etc/pam_ldap.conf
+           regexp='pam_filter &\(objectclass=posixaccount\)\(\|\(cn=wara\)\(cn=local\)\)'
+           replace='pam_filter &(objectclass=posixaccount)(|(cn=wara)(cn=local))'
+  when: filter_result.rc == 0 and env == "prd"
+  tags: filter

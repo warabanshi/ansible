@@ -8,20 +8,22 @@
         dest=/etc/openldap/ldif/{{ item }}
   with_items:
     - base.ldif
-    - people-personal.ldif
+    - user.ldif
     - group.ldif
     - warabanshi.ldif
     - testuser.ldif
+    - restricted.ldif
   tags: making
 
 - name: make roles
-  shell: ldapadd -x -D 'cn=Manager,dc=wara,dc=local' -f /etc/openldap/ldif/{{ item }} -w 'ldapadmin'
+  shell: ldapadd -x -D 'cn=adm,dc=wara,dc=local' -f /etc/openldap/ldif/{{ item }} -w ldapadmin
   register: result
   failed_when: result.rc not in [0, 68]
   with_items:
     - base.ldif
-    - people-personal.ldif
+    - user.ldif
     - group.ldif
     - warabanshi.ldif
     - testuser.ldif
+    - restricted.ldif
   tags: making

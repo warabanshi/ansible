@@ -2,8 +2,8 @@ dn: dc=wara,dc=local
 objectClass: organization
 objectClass: dcObject
 dc: wara
-o: wara
+o: warabanshi test
 
-dn: cn=Manager,dc=wara,dc=local
+dn: cn=adm,dc=wara,dc=local
 objectClass: organizationalRole
-cn: Manager
+cn: adm

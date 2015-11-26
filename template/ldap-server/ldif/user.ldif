@@ -1,0 +1,13 @@
+# make user OU
+dn: ou=Users,dc=wara,dc=local
+objectClass: organizationalUnit
+ou: Users
+
+dn: ou=Active,ou=Users,dc=wara,dc=local
+objectClass: organizationalUnit
+ou: Active
+
+dn: ou=Deleted,ou=Users,dc=wara,dc=local
+objectClass: organizationalUnit
+ou: Deleted
+
