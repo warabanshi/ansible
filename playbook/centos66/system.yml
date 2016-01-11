@@ -1,0 +1,5 @@
+- hosts: ldap-client
+  remote_user: root
+
+  roles:
+    - /etc/ansible/roles/centos66/system/sudoers

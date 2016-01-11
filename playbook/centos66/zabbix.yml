@@ -1,0 +1,5 @@
+- hosts: zabbix-server
+  remote_user: root
+
+  roles:
+    - /etc/ansible/roles/centos66/zabbix-server/install

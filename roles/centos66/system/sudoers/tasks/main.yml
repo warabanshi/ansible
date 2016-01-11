@@ -1,0 +1,8 @@
+- name: append comment line
+  lineinfile: "dest=/etc/sudoers state=present regexp='^# append sudo configuration' line='# append sudo configuration'"
+  tags: system
+
+- name: append sudo configuration
+  lineinfile: "dest=/etc/sudoers state=present regexp='^%Operator' line='%Operator ALL=(ALL)  /usr/bin/less'"
+  tags: system
+              
