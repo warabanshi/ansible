@@ -1,0 +1,6 @@
+- hosts: zabbix-agent
+  remote_user: root
+
+  roles:
+    - /etc/ansible/roles/centos66/zabbix-agent/install
+#    - /etc/ansible/roles/centos66/zabbix-agent/setup

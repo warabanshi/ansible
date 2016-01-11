@@ -17,4 +17,3 @@
     - zabbix-server-mysql
     - zabbix-web-mysql
   tags: install
-

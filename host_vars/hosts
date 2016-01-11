@@ -1,6 +1,6 @@
 [zabbix-server]
 172.0.0.20
 
-[zabbix-client]
+[zabbix-agent]
 172.0.0.30
 172.0.0.40

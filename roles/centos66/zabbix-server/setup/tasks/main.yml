@@ -1,0 +1,48 @@
+- name: put config files
+  copy: src=/etc/ansible/template/zabbix-server/{{ item }}
+        dest=/etc/{{ item }}
+  with_items:
+    - my.cnf
+    - zabbix/zabbix_server.conf
+  tags: setup 
+
+- name: make log directory
+  file: path=/var/log/mysql
+        state=directory
+  tags: setup
+
+- name: mysql service on
+  service: name=mysqld state=started enabled=yes
+  tags: setup
+
+- name: setup databse
+  shell: echo "{{ item }}" | mysql -uroot -h 127.0.0.1
+  with_items:
+    - create database zabbix character set utf8 collate utf8_bin;
+    - grant all privileges on zabbix.* to zabbix@localhost identified by 'zabbix';
+    - flush privileges;
+  ignore_errors: true
+  tags: setup
+
+- name: check initialize finished
+  shell: echo "SELECT 1 FROM screens" | mysql -u root -h 127.0.0.1 zabbix
+  register: init_result
+  ignore_errors: true
+  tags: setup
+
+- name: initialize DB
+  shell: mysql -u root zabbix -h 127.0.0.1 < {{ item }}
+  with_items:
+    - /usr/share/doc/zabbix-server-mysql-2.4.7/create/schema.sql
+    - /usr/share/doc/zabbix-server-mysql-2.4.7/create/images.sql
+    - /usr/share/doc/zabbix-server-mysql-2.4.7/create/data.sql
+  when: init_result.rc == 1
+  tags: setup
+
+- name: zabbix service on
+  service: name=zabbix-server state=started enabled=yes
+  tags: setup
+
+- name: httpd service on
+  service: name=httpd state=started enabled=yes
+  tags: setup

@@ -3,3 +3,4 @@
 
   roles:
     - /etc/ansible/roles/centos66/zabbix-server/install
+    - /etc/ansible/roles/centos66/zabbix-server/setup
