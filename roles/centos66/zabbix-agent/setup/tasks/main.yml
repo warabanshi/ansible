@@ -1,0 +1,46 @@
+- name: edit zabbix_agent.conf
+  replace: dest=/etc/zabbix/zabbix_agentd.conf
+           backup=yes
+           regexp="{{ item.regexp }}"
+           replace="{{ item.replace }}"
+  with_items:
+   - { regexp: '^# AllowRoot=0', replace: 'AllowRoot=1' }
+   - { regexp: '^Server=127.0.0.1', replace: 'Server=172.0.0.20' }
+   - { regexp: '^Hostname=Zabbix server', replace: "Hostname={{ ansible_eth1.ipv4.address }}" }
+  tags: setup
+
+- name: zabbix-agent on
+  service: name=zabbix-agent
+           state=started
+           enabled=yes
+  tags: setup
+
+- name: mkdir for script
+  file: path={{ item }}
+        state=directory
+  with_items:
+   - /opt/zabbix
+   - /var/log/zabbix
+  tags: setup
+
+- name: zabbix parameter
+  copy: src=/etc/ansible/template/zabbix-agent/userparameter_os.conf
+        dest=/etc/zabbix/zabbix_agentd.d/userparameter_os.conf
+  tags: setup
+
+- name: logcheck sh
+  copy: src=/etc/ansible/template/zabbix-agent/logchk.sh
+        dest=/opt/zabbix/logchk.sh
+  tags: setup
+
+- name: os_logcheck.sh
+  copy: src=/etc/ansible/template/zabbix-agent/os_logchk.sh
+        dest=/opt/zabbix/os_logchk.sh
+  tags: setup
+
+- name: report cron
+  cron: name="report os log" minute="*/5"
+        job="/bin/sh /opt/zabbix/os_logchk.sh"
+        state=present
+  tags: setup
+
